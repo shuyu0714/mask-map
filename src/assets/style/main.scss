@@ -1,0 +1,387 @@
+@import 'https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,500,700&display=swap';
+@import '_reset.scss';
+@import '_mixin.scss';
+
+*,*::before,*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-family: 'Noto Sans TC', Helvetica, Arial, sans-serif;
+    color: #707070;
+    font-size: 82%;
+    @include forMobile {
+        // font-size: 12px;
+    }
+}
+h1 {
+    font-size: 35px;
+    line-height: 1;
+    letter-spacing: 0.88px;
+    @include forMobile {
+        font-size: 1.5rem;
+    }
+}
+h2 {
+    font-size: 32px;
+    font-weight: bold;
+    @include forMobile {
+        font-size: 1.5rem;
+    }
+}
+h3 {
+    font-size: 25px;
+    margin-bottom: 0;
+    @include forMobile {
+        font-size: 1rem;
+    }
+}
+h4 {
+    font-size: 22px;
+    line-height: 33px;
+}
+h6 {
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 0;
+    color: #9f9f9f;
+}
+.fBalance {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+.head {
+    padding: 30px 20px 0;
+    @include forMobile {
+        align-items: center;
+        padding: 10px 13px 0;
+    }
+}
+.toolbox {
+    background: #F7F7F7;
+    z-index: 999;
+    position: relative;
+    transition: all .5s ease-out;
+    @include forDesk {
+        transform: translateX(0);
+        width: 450px;
+        height: 100vh;
+    }
+    @include forMobile {
+        max-width: 450px;
+        width: calc(100% - 20px);
+        // transform: translateX(-100%);
+        height: 100%;
+        min-height: 100vh;
+    }
+    &.active {
+        transform: translateX(-100%);
+        @include forMobile {
+            transform: translateX(-100%)
+        }
+        & + .map-wrapper {
+            width: 100vw;
+            transform: translateX(0);
+        }
+
+    }
+    .topTnfo {
+        text-align: left;
+        background : #F7F7F7;
+    }
+    .resources {
+        text-align: end;
+    }
+    .daily-card {
+        position: relative;
+        .info-anchor {
+            position: absolute;
+            right: 40px;
+            bottom: 38px;
+            width: 26px;
+            height: 26px;
+            left: initial;
+            cursor: pointer;
+            background-image : url(assets/banner_link_to_official_web.svg);
+            background-size: 100%;
+        }
+        *:not(img) {
+            position: absolute;
+            left: 37px;
+            @include forMobile {
+                left: 29px;
+                left: 7.8125vw;
+            }
+        }
+        .today {
+            top: 32px;
+            @include forMobile {
+                top: 6vw;
+            }
+        }
+        .number {
+            font-weight: Bold;
+            font-size: 31px;
+            letter-spacing: 0.93px;
+            color: #EF8A00;
+            bottom: 24px;
+            @include forMobile {
+                font-size: 6.25vw;
+                line-height: 1;
+                bottom: 7.5vw;
+            }
+        }
+    }
+    .group {
+        padding-left: 20px;
+        padding-right: 20px;
+        @include forMobile {
+            padding-right: 13px;
+            padding-left: 13px;
+            .row {
+                margin-left: -5px;
+                margin-right: -5px;
+                [class^="col-"] {
+                    padding-left: 5px;
+                    padding-right: 5px;
+                }
+            }
+            .col-form-label {
+                display: none;
+            }
+        }
+
+    }
+        
+}
+.collapseBtn {
+    z-index: 999;
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    width: 29px;
+    height: 88px;
+    background-image: url(assets/bg_drag.svg);
+    background-size: 100%;
+    right: -28px;
+    top: 65px;
+    @include forMobile {
+        width: 20px;
+        height: 61px;
+        right: -20px;
+        top: 77px;
+    }
+}
+.mask-type {
+    padding-bottom: 25px;
+    position: relative;
+    @include forDesk {
+        padding-top: 7px;
+    }
+    @include forMobile {
+        padding-bottom: 15px;
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        width: 70%;
+        display: block;
+        height: 1px;
+        background-color: #9f9f9f;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+    }
+}
+.mask-status {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    @include forMobile {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        flex-direction: column;
+        align-items: center;
+    }
+    .status-btns {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include forMobile {
+            flex-basis: 100%;
+            margin-top: 10px;
+        }
+    }
+}
+.round {
+    border: 1px solid;
+    border-radius: 24px;
+    text-align: center;
+    background-color: #fff;
+    padding: 2px 8px;
+    cursor: pointer;
+    &+& {
+        margin-left: 8px;
+    }
+    &.big {
+        padding: 9px 30px;
+        @include forMobile {
+            padding: 4px 2px;
+        }
+    }
+    &.active {
+        color: #fff;
+        border-color: #EF8A00;
+        background-color: #EF8A00;
+    }
+}
+.list-group {
+    padding: 0 20px 20px;
+    overflow: auto;
+    @include forDesk {
+        // height: calc(100vh - 450px);
+        height: calc(100vh - 272px);
+    }
+    @include forMobile {
+        padding: 0 14px 50px;
+    }
+    .list-item {
+        box-shadow: 1px 1px 15px #70707029;
+        border-radius: 30px;
+        padding: 23px 23px 14px 23px;
+        @include forMobile {
+            padding: 14px 12px 10px 18px
+        }
+    }
+}
+.list-item {
+    position: relative;
+    background-color: #fff;
+    +.list-item {
+        margin-top: 23px;
+        @include forMobile {
+            margin-top: 10px;
+        }
+    }
+    .name {
+        * {
+            display: inline-block;
+        }
+        h4 {
+            min-width: 112px;
+        }
+        span {
+            font-size: 16px;
+            margin-left: 16px;
+        }
+    }
+    .info {
+        .item {
+            + .item {
+                margin-top: 6px;
+            }
+        }
+    }
+}
+.mask-num {
+    margin-top: 18px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    @include forMobile {
+        margin-top: 10px;
+    }
+    .round {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-around;
+        width: calc(50% - 15px);
+        height: 48px;
+        line-height: 48px;
+        background : #00C3C3;
+        border: 0;
+        color: #fff;
+        @include forMobile {
+            height: 32px;
+            line-height: 32px;
+            width: calc(50% - 4px);
+        }
+        label {
+            font-size: 35px;
+            margin-bottom: 0;
+            line-height: 1;
+            @include forMobile {
+                font-size: 1rem;
+            }
+        }
+        &.empty {
+            background-color :#9f9f9f;
+        }
+    }
+}
+.action-group {
+    position: absolute;
+    right: 43px;
+    top: 30px;
+    @include forMobile {
+        right: 12px;
+    }
+    a {
+        display: block;
+        width: 34px;
+        height: 34px;
+        background-size: 100%;
+        background-image: url(assets/icon_nav.svg);
+        & + & {
+            margin-top: 13px;
+        }
+        &.favorite {
+            margin-bottom: 13px;
+            background-image: url(assets/icon_star_unselected.svg);
+            &.active {
+                background-image: url(assets/icon_star_selected.svg);
+            }
+        }
+    }
+}
+.map-wrapper {
+    transition: all 0.5s ease-out;
+    transform: translateX(0);
+    height: 100vh;
+    margin-left: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    @include forDesk {
+        width: calc(100vw - 450px);
+    }
+}
+.leaflet-popup-close-button {
+    display: none;
+}
+.leaflet-popup-content {
+    font-family: 'Noto Sans TC', Helvetica, Arial, sans-serif;
+    margin: 12px;
+    width: auto;
+    .list-item {
+        min-width: 275px;
+    }
+    .mask-num .round {
+        width: 100%;
+        height: 26px;
+        line-height: 26px;
+        label {
+            font-size: 20px;
+        }
+    }
+    .mask-num {
+        margin-top: 75px;
+    }
+    .action-group {
+        right: 0;
+        top: 36px;
+    }
+}

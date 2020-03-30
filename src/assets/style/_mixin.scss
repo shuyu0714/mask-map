@@ -1,0 +1,12 @@
+$desktop: 641px;
+$mobile: 640px;
+@mixin forDesk {
+  @media screen and (min-width: $desktop) {
+    @content;
+  }
+}
+@mixin forMobile {
+  @media screen and(max-width: $mobile) {
+    @content;
+  }
+}
